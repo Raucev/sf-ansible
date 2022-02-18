@@ -2,6 +2,7 @@
 - hosts: localhost
   become: yes
   roles:
-     - sf-b6.4.1
-     - sf-b6.5.1
+    # - sf-b6.4.1
+     #- sf-b6.5.1
+     - sf-b6.6.1
 

@@ -1,1 +1,1 @@
-ansible-playbook playbook.yml --extra-vars "ansible_sudo_pass=" 
+ansible-playbook playbook.yml --ask-vault-pass

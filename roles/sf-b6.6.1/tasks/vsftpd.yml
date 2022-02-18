@@ -1,0 +1,11 @@
+---
+    - name: install vsftpd
+      community.general.pacman:
+        name: vsftpd
+        state: present
+        
+    - name: start vsftpd
+      ansible.builtin.systemd:
+        state: started
+        name: vsftpd
+        enabled: yes
