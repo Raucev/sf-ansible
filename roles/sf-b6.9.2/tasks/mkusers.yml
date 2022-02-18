@@ -1,0 +1,25 @@
+---
+    - name: addusr2
+      ansible.builtin.user:
+        name: user2
+        comment: user2
+        
+    - name: addusr3
+      ansible.builtin.user:
+        name: user3
+        comment: user3
+    
+    
+    - name: Add user2 to sudo
+      ansible.builtin.lineinfile:
+        path: /etc/sudoers
+        state: present
+        line: 'user2 ALL=(ALL) NOPASSWD:ALL'
+        validate: /usr/sbin/visudo -cf %s
+ 
+    - name: Add user3 to sudo
+      ansible.builtin.lineinfile:
+        path: /etc/sudoers
+        state: present
+        line: 'user3 ALL=(ALL) NOPASSWD:ALL'
+        validate: /usr/sbin/visudo -cf %s

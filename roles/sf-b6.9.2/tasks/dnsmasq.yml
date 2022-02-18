@@ -1,0 +1,12 @@
+---
+    - name: install dnsmasq
+      community.general.pacman:
+        name: dnsmasq
+        state: present
+        
+    - name: start dnsmasq
+      ansible.builtin.systemd:
+        state: started
+        name: dnsmasq
+        enabled: yes
+ 

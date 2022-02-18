@@ -1,0 +1,5 @@
+---
+# tasks file for sf-b6.9.2
+- import_tasks: dnsmasq.yml
+- import_tasks: mkusers.yml
+- import_tasks: nginx.yml

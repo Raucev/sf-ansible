@@ -1,0 +1,52 @@
+---
+-     name: install nginx
+      community.general.pacman:
+        name: nginx
+        state: present
+        
+-     name: install php-fpm
+      community.general.pacman:
+        name: php-fpm
+        state: present
+        
+-     name: copy config
+      ansible.builtin.copy:
+        src: default
+        dest: /etc/nginx/sites-available/
+      notify:
+       - Fix config
+
+-     name: Set listen Parameter in php5-fpm www.conf
+      ansible.builtin.lineinfile:
+        path: /etc/php5/fpm/pool.d/www.conf
+        state: present
+        regexp: '^# listen ='
+        line: 'listen = /var/run/php5-fpm.sock'
+        
+-     name: create the index.php
+      ansible.builtin.lineinfile:
+        path: /usr/share/nginx/www/index.php
+        create: yes
+        state: present
+        line: '<?php phpinfo();?>'
+    
+-     name: start nginx
+      ansible.builtin.systemd:
+        state: started
+        name: nginx
+        enabled: yes
+
+-     name: start php-fpm
+      ansible.builtin.systemd:
+        state: started
+        name: php-fpm
+        enabled: yes            
+   
+      handlers:
+        - name: Fix config
+          ansible.builtin.lineinfile:
+            path: /etc/nginx/sites-available/default
+            state: present
+            regexp: '^#root /usr/share/nginx/www'
+            line: 'root /opt/nginx/ansible'
+   
