@@ -1,0 +1,3 @@
+---
+ansible_sudo_pass: "{{ vault_ansible_sudo_pass }}" 
+user1_public_key: "{{ vault_user1_public_key }}"

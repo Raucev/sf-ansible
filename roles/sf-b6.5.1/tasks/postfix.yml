@@ -1,0 +1,12 @@
+---
+    - name: install postfix
+      community.general.pacman:
+        name: postfix
+        state: present
+      tags: "init postfix"
+      
+    - name: remove postfix
+      community.general.pacman:
+        name: postfix
+        state: removed
+      tags: "drop postfix"

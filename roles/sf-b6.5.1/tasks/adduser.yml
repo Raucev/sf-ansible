@@ -1,0 +1,17 @@
+---
+    - name: addusr
+      ansible.builtin.user:
+        name: user1
+        comment: user1
+      #register: b651_addusr
+    
+    - name: make .ssh dir
+      file:
+        path: /home/user1/.ssh/
+        state: directory
+
+    - name: make pub file
+      ansible.builtin.template:
+        src: ./roles/sf-b6.5.1/templates/key.j2
+        dest: /home/user1/.ssh/id_rsa.pub
+        mode: '0600'
