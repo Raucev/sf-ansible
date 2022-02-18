@@ -1,0 +1,8 @@
+---
+ - name: Install docker
+   community.general.pacman:
+    name: docker
+    state: present
+ 
+ - name: Run docker
+   ansible.builtin.command: docker
